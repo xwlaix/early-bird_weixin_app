@@ -1,0 +1,105 @@
+<!-- pages/list/index.wxml -->
+<view class='list'>
+  <view class='item' wx:for="{{market}}" wx:for-index="index" wx:key="item.buyer_id">
+    <view class='title'>
+      <view class='left tit'>
+        <view class='middle'>
+          <text>{{item.buyer_name}}</text>
+          <text>应收机会 ： {{item.currency_sign}}{{item.avaibale_amount}}</text>
+        </view>
+      </view>
+      <view class='right switch'>
+        <view class='switch-btn' data-index="{{index}}" data-id="{{item.buyer_id}}" data-vendorcode="{{item.vendor_code}}" data-status="{{item.is_participation}}" data-marketstatus='{{item.market_status}}' bindtap="changeStatus"></view>
+        <view class="body-view">
+          <switch wx:if="{{item.market_status==1&&close_time > 0}}" data-index="{{index}}" color='#24457C' checked="{{item.is_participation==1?true:''}}" />
+          <switch wx:else data-index="{{index}}" color='#ddd' checked="{{item.is_participation==1?true:''}}" />
+        </view>
+      </view>
+      <text class='second'>{{item.supplier}}-{{item.vendor_code}}</text>
+    </view>
+    <view class='detail'>
+      <form bindsubmit="toDetail" data-id="{{item.buyer_id}}" data-vendorcode="{{item.vendor_code}}" report-submit='true'>
+        <view class='li'>
+          <view class='left'>清算应收</view>
+          <view class='right important'>
+            <image src='../image/lightning.png' mode='aspectFit' wx:if="{{item.freeze_time>0}}"></image>
+            <text wx:if="{{item.offer_status==0}}">{{item.currency_sign}}{{item.clearing_amount}}</text>
+            <text wx:else>市场正在计算中</text>
+          </view>
+        </view>
+        <view class='li'>
+          <view class='left'>折扣金额</view>
+          <view class='right'>
+            <text wx:if="{{item.offer_status==0}}">{{item.currency_sign}}{{item.discount}}</text>
+            <text wx:else>市场正在计算中</text>
+          </view>
+        </view>
+        <view class='li'>
+          <view class='left'>成交年化率</view>
+          <view class='right'>
+            <text wx:if="{{item.avg_apr}}">{{item.avg_apr}}%</text>
+            <text wx:else="">0</text>
+          </view>
+        </view>
+        <view class='li'>
+          <view class='left'>早付天数</view>
+          <view class='right'>
+            <text>{{item.avg_dpe}}天</text>
+          </view>
+        </view>
+        <view class="hr"></view>
+        <view class='li last'>
+          <view class='left'>未清算应收</view>
+          <view class='right'>
+            <text wx:if="{{item.offer_status==0}}">{{item.currency_sign}}{{item.noclearing_amount}}</text>
+            <text wx:else>市场正在计算中</text>
+          </view>
+        </view>
+        <button formType="submit" class='sub'>Submit</button>
+      </form>
+    </view>
+    <view class='setting-box'>
+      <view class='right'>
+        <view class='text'>当前开价</view>
+        <view class='setting' bindtap='changeRate' data-index="{{index}}">
+          <view class='icon'>
+            <image src='../image/setting.png' mode='aspectFit'></image>
+          </view>
+          <view class='tip' wx:if="{{item.market_status!=1||close_time < 0}}">市场今日未开市</view>
+          <view class='tip' wx:elif="{{item.offer_status==0}}">{{item.offer_value}}%{{item.offer_type=='apr'?'年化率':'折扣率'}}</view>
+          <view class='tip' wx:else>市场正在计算中</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- <view class='server' >
+  <image src='../image/group.png' mode='aspectFit'>
+    <button open-type='contact'></button>
+  </image>
+</view> -->
+<mp-dialog title="设置开价" show="{{showAlert}}" bindbuttontap="setAprButton" buttons="{{aprButtons}}">
+  <view class='content'>
+    <view class='detail'>
+      <view class='center'>
+        <view class='left select'>
+          <picker bindchange="setChooseIndex" value="{{index}}" range="{{option}}">
+            <view class="picker">
+              {{option[choose.index]}}
+              <image src='../image/down.png' mode='aspectFit'></image>
+            </view>
+          </picker>
+        </view>
+        <view class='left choose'>
+          <view class='left remove' bindtap='removeNumber'>-</view>
+          <input type='digit' class='left input' placeholder='%' value='{{choose.num}}' bindblur="inputNumber"></input>
+          <view class='left add' bindtap='addNumber'>+</view>
+        </view>
+        <view class='left unit'>%</view>
+      </view>
+    </view>
+  </view>
+</mp-dialog>
+<mp-dialog title="提示" show="{{showAlertMarket}}" bindbuttontap="setMarketButton" buttons="{{buttons}}">
+  <view class='des'>是否确定不参与此次市场</view>
+</mp-dialog>

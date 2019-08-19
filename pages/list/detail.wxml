@@ -1,0 +1,146 @@
+<!-- pages/list/detail.wxml -->
+<view class='status'>
+  <view class='title'>状态</view>
+  <view class='text'>
+    <view class='icon'>
+      <image src='../image/success.png'></image>
+    </view>
+    <view class='tip' wx:if="{{detail.offer_status==0}}">
+      您目前在市场中预计可获得<text>{{detail.currency_sign}}{{detail.total.available_amount}}</text>的早付金额，保留您的开价，以使你在{{detail.paydate}}获得这笔应收
+    </view>
+    <view class='tip' wx:else>市场正在计算中</view>
+  </view>
+</view>
+<view class='detail-box'>
+  <view class='l-title'>明细</view>
+  <view class='item'>
+    <view class='title'>
+      <view class='left tit'>
+        <view class='middle'>
+          <text>{{detail.buyer_name}}</text>
+        </view>
+      </view>
+      <view class='right switch'>
+        <view class='switch-btn' bindtap="changeStatus"></view>
+        <view class="body-view">
+          <switch wx:if="{{detail.market_status==1&&detail.close_time > 0}}" color='#24457C' checked="{{detail.is_participation==1?true:''}}" />
+          <switch wx:else color='#ddd' checked="{{detail.is_participation==1?true:''}}" />
+        </view>
+      </view>
+      <text class='second'>{{detail.supplier}}-{{detail.vendor_code}}</text>
+    </view>
+    <view class='detail'>
+      <view class='li'>
+        <view class='left'>清算应收</view>
+        <view class='right important'>
+          <image src='../image/lightning.png' mode='aspectFit' wx:if="{{detail.freeze_time>0}}"></image>
+          <text wx:if="{{detail.offer_status==0}}">{{detail.currency_sign}}{{detail.clearing.available_amount?detail.clearing.available_amount:0}}</text>
+          <text wx:else>市场正在计算中</text>
+        </view>
+      </view>
+      <view class='li'>
+        <view class='left'>折扣金额</view>
+        <view class='right'>
+          <text wx:if="{{detail.offer_status==0}}">{{detail.currency_sign}}{{detail.discount.amount?detail.discount.amount:0}}</text>
+          <text wx:else>市场正在计算中</text>
+        </view>
+      </view>
+      <view class='li'>
+        <view class='left'>年利率</view>
+        <view class='right'>
+          <text>{{detail.discount.average_apr}}</text>
+        </view>
+      </view>
+      <view class='li'>
+        <view class='left'>早付天数</view>
+        <view class='right'>
+          <text>{{detail.clearing.average_dpe}}天</text>
+        </view>
+      </view>
+      <view class="hr"></view>
+      <view class='li last'>
+        <view class='left'>未清算应收</view>
+        <view class='right'>
+          <text wx:if="{{detail.offer_status==0}}">{{detail.currency_sign}}{{detail.nonclearing.available_amount?detail.nonclearing.available_amount:0}}</text>
+          <text wx:else>市场正在计算中</text>
+        </view>
+      </view>
+    </view>
+    <view class='setting-box'>
+      <view class='right'>
+        <view class='text'>当前开价</view>
+        <view class='setting' bindtap='changeRate'>
+          <view class='icon'>
+            <image src='../image/setting.png' mode='aspectFit'></image>
+          </view>
+          <view class='tip' wx:if="{{detail.market_status!=1||close_time < 0}}">市场今日未开市</view>
+          <view class='tip' wx:elif="{{detail.offer_status==0}}">
+            {{detail.offer_value}}%{{detail.offer_type=='apr'?'年化率':'折扣率'}}
+          </view>
+          <view class='tip' wx:else>市场正在计算中</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<view class='next'>
+  <view class='title'>{{end_time.hour}} 小时 {{end_time.min}} 分钟 到市场清算</view>
+  <view class='about'>
+    <view class='li'>
+      <view class='left'>市场清算时间</view>
+      <view class='right'>12:00 PM</view>
+    </view>
+    <view class='li'>
+      <view class='left'>下一早付日</view>
+      <view class='right'>{{detail.paydate||'-'}}</view>
+    </view>
+  </view>
+</view>
+<view class='log' wx:if="{{detail.history}}">
+  <view class='title'>历史</view>
+  <view class='list'>
+    <view class='item'>
+      <view class='li'>
+        <view class='left'>付款时间</view>
+        <view class='right'>{{detail.history.paydate||'-'}}</view>
+      </view>
+      <view class='li'>
+        <view class='left'>清算日期</view>
+        <view class='right'>{{detail.history.award_date||'-'}}</view>
+      </view>
+      <view class='li'>
+        <view class='left'>已清算</view>
+        <view class='right'>{{detail.currency_sign}}{{detail.history.amount||'0'}}</view>
+      </view>
+      <view class='li'>
+        <view class='left'>折扣金额</view>
+        <view class='right'>{{detail.currency_sign}}{{detail.history.discount||'0'}}</view>
+      </view>
+    </view>
+  </view>
+</view>
+<mp-dialog title="设置开价" show="{{showAlert}}" bindbuttontap="setAprButton" buttons="{{aprButtons}}">
+  <view class='content'>
+    <view class='detail'>
+      <view class='center'>
+        <view class='left select'>
+          <picker bindchange="setChooseIndex" value="{{index}}" range="{{option}}">
+            <view class="picker">
+              {{option[choose.index]}}
+              <image src='../image/down.png' mode='aspectFit'></image>
+            </view>
+          </picker>
+        </view>
+        <view class='left choose'>
+          <view class='left remove' bindtap='removeNumber'>-</view>
+          <input type='digit' class='left input' placeholder='%' value='{{choose.num}}' bindblur="inputNumber"></input>
+          <view class='left add' bindtap='addNumber'>+</view>
+        </view>
+        <view class='left unit'>%</view>
+      </view>
+    </view>
+  </view>
+</mp-dialog>
+<mp-dialog title="提示" show="{{showAlertMarket}}" bindbuttontap="setMarketButton" buttons="{{buttons}}">
+  <view class='des'>是否确定不参与此次市场</view>
+</mp-dialog>

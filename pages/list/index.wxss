@@ -1,0 +1,44 @@
+/* pages/list/index.wxss */
+page{background: rgba(240,240,246,1);padding-bottom: 100rpx;}
+
+.item{width:670rpx;margin: 40rpx auto;background: #FFFFFF;box-shadow: 0 4px 15px 0 rgba(0,0,0,0.06);border-radius: 4px;}
+.item .title{overflow: hidden;height: 130rpx;background: #F5F5F5;padding: 0 40rpx;}
+.item .title .tit{height: 90rpx;}
+.item .title .tit .middle{height: 90rpx;text-align: left;}
+.item .title .tit .middle text:nth-child(1){display: block;font-size: 16px;color: #000000;letter-spacing: -0.39px;text-align: left;margin-top: 10rpx;}
+.item .title .tit .middle text:nth-child(2){display: block;font-size: 14px;color: #999999;letter-spacing: -0.39px;text-align: left;margin-top: 5rpx}
+.item .title .second{display: block;font-size: 12px;color: #999999;letter-spacing: -0.59px;text-align: left;float: left;height: 25rpx;line-height: 25rpx;margin-top: 5rpx;}
+.item .title .switch{margin-top: 32rpx;position: relative;}
+.item .title .switch .switch-btn{position: absolute;top:0;left:0;width: 100%;height: 100%;z-index: 2;}
+.item .detail{padding: 30rpx 0;position: relative;}
+.item .detail .sub{position: absolute;top:0;left:0;width: 100%;height: 100%;opacity: 0;z-index: 2;}
+.item .detail .li{overflow: hidden;height: 66rpx;line-height: 66rpx;font-size: 32rpx;padding: 0 40rpx;color: #999;}
+.item .detail .li .important{color:#000;}
+.item .detail .li .important image{display: block;float: left; width: 40rpx; height: 66rpx;}
+.item .detail .li .important text{display: block;float: left;height: 66rpx;line-height: 66rpx;}
+.item .setting-box{overflow: hidden;height: 130rpx;background: #f5f5f5;}
+.item .setting-box .right{overflow: hidden;padding-right: 40rpx;}
+.item .setting-box .right .text{display: block;float:left;font-size: 32rpx;color:#999;height: 130rpx;line-height: 130rpx;margin-right: 20rpx;}
+.item .setting-box .right .setting {display: block;float: left;padding: 0 25rpx; height:68rpx;border-radius: 34rpx;margin-top: 31rpx;background:rgba(182,192,208,1);overflow: hidden;}
+.item .setting-box .right .setting .icon{display: block;float: left;width: 38rpx;height: 68rpx;text-align: left;}
+.item .setting-box .right .setting .icon image{width:28rpx;height: 28rpx;margin-top: 20rpx;}
+.item .setting-box .right .setting .tip{display: block;float: left;height: 68rpx;line-height: 68rpx; font-size: 28rpx;color: #24457C;text-align: center;}
+
+.server{position: fixed;bottom:-10rpx;right:-10rpx;width:231rpx;height:216rpx;z-index: 99;}
+.server image{width:231rpx;height:216rpx;position: relative;overflow: hidden;}
+.server image button{display: block;width: 100%;height: 100%;position: absolute;top:0;left:0;opacity: 0;border-radius: 50%;}
+
+
+.content .title{font-size: 36rpx;color:#000;line-height: 50rpx;height: 50rpx;text-align: center;}
+.content .detail{text-align: center;}
+.content .detail .center{display: inline-block;overflow: hidden;}
+.content .detail .center .select{width:158rpx;height: 56rpx;line-height: 56rpx;border:1rpx solid #DCDCDC;border-radius: 8rpx;font-size: 28rpx;padding: 0 0 0 20rpx;text-align: left;margin-right: 40rpx;}
+.content .detail .center .select image{width: 28rpx;height:14rpx;margin-left: 20rpx;}
+.choose{overflow: hidden;border: 1rpx solid #dcdcdc;height: 56rpx;line-height: 56rpx;border-radius: 4px;}
+.choose .left{width: 60rpx;border-right: 1rpx solid #dcdcdc;font-size: 50rpx;color:#999;font-weight: 100;}
+.choose .left:nth-last-child(1){border-right: 0;}
+.left.unit{font-size: 28rpx;line-height: 56rpx;padding-left:10rpx;}
+.choose .input{width:60rpx;font-size: 26rpx;padding: 0 10rpx;color: #000;height:56rpx;line-height: 56rpx; }
+
+.hr{display: block;height: 1px;color: #ccc;border-bottom:1rpx solid #dcdcdc;padding:10rpx 40rpx;}
+.last{padding-top:10rpx!important;}

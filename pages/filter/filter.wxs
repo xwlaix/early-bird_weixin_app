@@ -1,0 +1,30 @@
+var Filter = {
+  replenishString: function (number) {
+    if (number < 10) {
+      return '0' + number;
+    } else {
+      return number;
+    }
+  },
+  formDate: function (time) {
+    if (!time) {
+      return false;
+    }
+    var newTime = getDate(time * 1000);
+    return newTime.getFullYear() + "." + Filter.replenishString(newTime.getMonth() + 1) + "." + Filter.replenishString(newTime.getDate());
+  },
+  defaultParam: function (param, text) {
+    if (!param) {
+      return text;
+    } else {
+      return param;
+    }
+  }
+}
+
+module.exports = {
+  replaceImage: Filter.replaceImage,
+  formDate: Filter.formDate,
+  replaceIcon: Filter.replaceIcon,
+  defaultParam: Filter.defaultParam
+}

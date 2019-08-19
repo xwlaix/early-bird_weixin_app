@@ -1,0 +1,21 @@
+/* pages/index/index.wxss */
+.logo{width:420rpx;height: 224rpx;margin: 42rpx auto 0;}
+.logo image{width: 420rpx;height: 224rpx;}
+
+.form{margin-top: 80rpx;}
+.form .section{height: 100rpx;line-height: 100rpx;text-align: center;}
+.form .section .center{overflow: hidden;height: 100rpx;border-bottom: 1rpx solid #dcdcdc;}
+.form .section .center .icon{width: 85rpx;height: 100rpx;}
+.form .section .center .icon image{width:32rpx;height: 33rpx;}
+.form .section .center .input{width: 479rpx;height: 100rpx;}
+.form .section .center .input input{width: 460rpx;line-height: 90rpx;background: #fff;text-align: left;padding: 0 10rpx;font-size: 32rpx;color: #333;height: 90rpx;}
+.form .section:nth-child(1){margin-bottom: 30rpx;}
+.form .btn-area{width: 564rpx;height: 96rpx;text-align: center;margin: 80rpx auto;background: #24457C;
+border-radius: 8rpx;color: #fff;font-size: 36rpx;}
+.form .btn-area button{width: 564rpx;height: 96rpx;text-align: center;background: #24457C;
+border-radius: 8rpx;color: #fff;font-size: 36rpx;}
+
+.help{margin: 300rpx auto 0;height: 50rpx;}
+.help .tel{display: block; text-align: center;line-height: 50rpx;height: 50rpx;font-size: 28rpx;color: #24457C;background: none;border: none;box-shadow: none;}
+button::after {border: none;}
+

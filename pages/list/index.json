@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "市场",
+  "usingComponents": {
+    "mp-dialog": "../components/dialog/dialog"
+  }
+}

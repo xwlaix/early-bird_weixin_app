@@ -1,0 +1,8 @@
+<!--pages/index/success.wxml-->
+<view class='icon'>
+  <image src='../image/warning.png' mode='aspectFit'></image>
+</view>
+<view class='tip'>
+  <text>未有授权市场，</text>
+  <text>请使用PC登录进行授权激活市场</text>
+</view>

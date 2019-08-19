@@ -1,0 +1,9 @@
+<!--pages/index/success.wxml-->
+<view class='icon'>
+  <image src='../image/error.png' mode='aspectFit'></image>
+</view>
+<view class='tip'>
+  <text>绑定失败</text>
+  <text>无法验证您的平台用户账户</text>
+  <text>请与您的客户代表联系索取支持</text>
+</view>

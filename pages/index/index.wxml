@@ -1,0 +1,36 @@
+<!--pages/index/index.wxml-->
+<view class='logo'>
+  <image src="../image/logo.png" mode='aspectFit'></image>
+</view>
+
+<view class='form'>
+  <form bindsubmit="login" report-submit='true'>
+    <view class="section section_gap">
+      <view class='center'>
+        <view class='left icon'>
+          <image src="../image/user.png" mode='aspectFit'></image>
+        </view>
+        <view class='left input'>
+          <input placeholder='请输入用户名' bindinput='setUsername' bindblur='setUsername'></input>
+        </view>
+      </view>
+    </view>
+    <view class="section section_gap">
+      <view class='center'>
+        <view class='left icon'>
+          <image src="../image/password.png" mode='aspectFit'></image>
+        </view>
+        <view class='left input'>
+          <input placeholder='请输入密码' password bindinput='setPassword' bindconfirm="login"></input>
+        </view>
+      </view>
+    </view>
+    <view class="btn-area">
+      <button formType="submit">绑定</button>
+    </view>
+  </form>
+</view>
+
+<!-- <view class='help'>
+  <button class='tel' open-type='contact'>寻求登录帮助</button>
+</view>  -->

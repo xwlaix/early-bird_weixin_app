@@ -1,0 +1,7 @@
+<!--pages/index/success.wxml-->
+<view class='icon'>
+  <image src='../image/success.png' mode='aspectFit'></image>
+</view>
+<view class='tip'>
+  <text>绑定成功</text>
+</view>

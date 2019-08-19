@@ -1,0 +1,5 @@
+/* pages/index/success.wxss */
+
+.icon{width: 186rpx;height: 186rpx;margin: 100rpx auto 0;}
+.icon image{width: 186rpx;height: 186rpx;}
+.tip{margin: 70rpx auto 0;text-align: center;font-size: 36rpx;color: #000;}

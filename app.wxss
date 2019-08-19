@@ -1,0 +1,10 @@
+/**app.wxss**/
+.center{display: inline-block;}
+.h20{height: 20rpx;background: #f2f2f2;}
+.h100{height:100rpx;}
+
+.left{float: left;}
+.right{float: right;}
+.middle{display: table-cell;vertical-align: middle;padding: 0;}
+.element{overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
+.element-more{display: -webkit-box;  -webkit-box-orient: vertical;  -webkit-line-clamp:2;  overflow: hidden;}
